@@ -1,9 +1,6 @@
 package com.example.mylocker.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -39,4 +36,12 @@ public class UserLocker {
 
     @Column(name="updated_at")
     private Timestamp updatedAt;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
+
+    @OneToOne
+    @JoinColumn(name = "locker_id", referencedColumnName = "id")
+    private Locker locker;
 }
