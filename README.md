@@ -38,7 +38,9 @@
 
 ## Insomnia Collection
 
-[Uploading Insomnia_2024-04-05.json…]()
+
+[Insomnia_2024-04-05.json](https://github.com/szatrio/my-locker-api/files/14879088/Insomnia_2024-04-05.json)
+
 
 
 
