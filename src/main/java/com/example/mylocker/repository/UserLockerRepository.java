@@ -17,4 +17,6 @@ public interface UserLockerRepository  extends JpaRepository<UserLocker, String>
     Optional<UserLocker> findFirstByLockerAndUser(Locker locker, User user);
 
     long countByUser(User user);
+
+    long countByLocker(Locker locker);
 }

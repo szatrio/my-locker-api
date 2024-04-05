@@ -42,14 +42,17 @@ public class UserLockerService {
     public BookLockerResponse bookLocker(BookLockerRequest request){
         validationService.validate(request);
 
-        User user = userRepository.findById(request.getLockerId())
+        User user = userRepository.findById(request.getUserId())
                 .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
 
         Locker locker = lockerRepository.findById(request.getLockerId())
                 .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Locker not found"));
 
-        userLockerRepository.findFirstByLocker(locker)
-                .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Locker already in use"));
+        long userLockerCheck = userLockerRepository.countByLocker(locker);
+
+        if (Math.toIntExact(userLockerCheck) >= 1){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Locker already in use");
+        }
 
         long userLockerMaxCheck = userLockerRepository.countByUser(user);
 
@@ -104,7 +107,7 @@ public class UserLockerService {
     public OpenLockerResponse openLocker(OpenLockerRequest request){
         validationService.validate(request);
 
-        User user = userRepository.findById(request.getLockerId())
+        User user = userRepository.findById(request.getUserId())
                 .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
 
         Locker locker = lockerRepository.findById(request.getLockerId())
