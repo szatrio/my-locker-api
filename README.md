@@ -1,4 +1,4 @@
-[Insomnia_2024-04-05.json](https://github.com/szatrio/my-locker-api/files/14879081/Insomnia_2024-04-05.json)# my-locker-api
+my-locker-api
 
 ## Table of Contents
 
