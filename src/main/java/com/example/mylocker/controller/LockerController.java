@@ -11,6 +11,8 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class LockerController {
 
@@ -18,11 +20,24 @@ public class LockerController {
     private LockerService lockerService;
 
     @GetMapping(
-            path = "/api/locker",
+            path = "/api/lockers",
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
     public WebResponse<LockerResponse> create(){
         LockerResponse lockerResponse = lockerService.create();
         return WebResponse.<LockerResponse>builder().data(lockerResponse).build();
     }
+
+    @GetMapping(
+            path = "/api/lockers-list",
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public WebResponse<List<LockerResponse>> getList(){
+        List<LockerResponse> lockerResponse = lockerService.getList();
+        return WebResponse.<List<LockerResponse>>builder()
+                .data(lockerResponse)
+                .build();
+    }
+
+
 }

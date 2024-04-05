@@ -24,12 +24,13 @@ public class User {
 
     private String name;
 
-    @Column(name="phone_number")
+    @Column(name="phone_number", unique = true)
     private String phoneNumber;
 
-    @Column(name="id_number")
+    @Column(name="id_number", unique = true)
     private String idNumber;
 
+    @Column(unique = true)
     private String email;
 
     @Column(name="total_deposit")

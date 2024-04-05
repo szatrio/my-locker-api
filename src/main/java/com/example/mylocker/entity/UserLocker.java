@@ -27,10 +27,6 @@ public class UserLocker {
     @Column(name="password_wrong")
     private Integer passwordWrong;
 
-    private Integer deposit;
-
-    private Integer forfeit;
-
     @Column(name="created_at")
     private Timestamp createdAt;
 

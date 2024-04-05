@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 public class UserController {
@@ -50,6 +52,17 @@ public class UserController {
 
         UserResponse userResponse = userService.update(request);
         return WebResponse.<UserResponse>builder()
+                .data(userResponse)
+                .build();
+    }
+
+    @GetMapping(
+            path = "/api/users",
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public WebResponse<List<UserResponse>> getList(){
+        List<UserResponse> userResponse = userService.getList();
+        return WebResponse.<List<UserResponse>>builder()
                 .data(userResponse)
                 .build();
     }

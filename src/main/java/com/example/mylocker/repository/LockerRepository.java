@@ -10,4 +10,5 @@ import java.util.Optional;
 public interface LockerRepository extends JpaRepository<Locker, String> {
 
     Optional<Locker> findFirstByOrderByCreatedAtDesc();
+
 }

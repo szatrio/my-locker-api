@@ -13,6 +13,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -84,4 +85,14 @@ public class UserService {
 
         return toUserResponse(user);
     }
+
+    @Transactional(readOnly = true)
+    public List<UserResponse> getList(){
+        List<User> users = userRepository.findAll();
+
+        return users.stream()
+                .map(this::toUserResponse)
+                .toList();
+    }
+
 }
